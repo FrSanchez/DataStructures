@@ -27,7 +27,8 @@ public:
     Plan() : name("") , goal(""), date("") {}
     Plan(string n,string g ,string d) : name(n), goal(g), date(d) {}
     
-    friend std::ostream& operator<<(std::ostream& os, const Plan& obj);
+    friend std::ostream& operator<<(std::ostream& os, Plan& obj);
+    friend std::istream& operator >>(std::istream &is, Plan &obj);
 };
 
 #endif /* Plan_h */

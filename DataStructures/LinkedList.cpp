@@ -24,7 +24,9 @@ void LinkedList::add(Node* node) {
         insert(node);
     } else {
         last->next = node;
+        node->prev = last;
         last = node;
+        size++;
     }
 }
 
@@ -70,12 +72,10 @@ void LinkedList::insert(Node* node){
 std::ostream& operator<<(std::ostream& os, const LinkedList& obj)
 {
     Node* curr = obj.head;
-    int first = 0;
-    while (curr != nullptr) {
-        string next = (first) ? "-> " : "";
-        os << next << curr->getData();
+    std::string next = " -> ";
+    while(curr != nullptr) {
+        os << curr->getData().getName() << next;
         curr = curr->next;
-        first = 1;
     }
     return os;
 }

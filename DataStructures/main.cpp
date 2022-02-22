@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <map>
@@ -36,14 +37,24 @@ string random_string(std::size_t length)
 int main()
 {
     LinkedList list;
-    for(int i = 0; i < 20; i++) {
-        Plan plan(random_string(13), random_string(8), "01/02/2022");
-        Node* node = new Node(plan);
-        list.add(node);
+    ifstream myFile;
+    myFile.open("Plans.txt", ios::in);
+    if (myFile.is_open()) {
+        string temp;
+        do {
+            if (!myFile.eof()) {
+//                Plan* plan = new Plan();
+//                myFile >> *plan;
+//                Node* node = new Node(*plan);
+//                list.add(node);
+                Node* node = new Node();
+                list.add(node);
+                myFile >> *node;
+            }
+        } while(getline(myFile, temp) );
     }
     
-    cout << "LIST" << endl;
-    cout << list << endl;
-    
+    std::cout << "List Size: " << list.getSize() << std::endl;
+    std::cout << list << std::endl;
     return 0;
 }

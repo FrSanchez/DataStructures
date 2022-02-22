@@ -9,13 +9,6 @@
 #include "Node.h"
 
 
-Node::Node(Plan pl)
-{
-    plan = pl;
-    prev = nullptr;
-    next = nullptr;
-}
-
 Node::~Node()
 {
     std::cout << "Node delete " << plan.getName() << std::endl;
@@ -25,4 +18,9 @@ std::ostream& operator<<(std::ostream& os, const Node& obj)
 {
     os << obj.plan ;
     return os;
+}
+
+std::istream& operator >>(std::istream &is, Node &obj) {
+    is >> obj.plan;
+    return is;
 }
